@@ -11,7 +11,7 @@ d.Niter=5000; %max iters
 d.err_tol=1.0e-8; %tolerance
 d.speed=0.4; %update speed
 
-% Make sure: (1) Shapes are correct
+% Make sure: Shapes are correct
 d.price=d.price_ss; %initial prices
 d.L=ones(d.DJ,d.T)/d.DJ; %guess, total labor=1
 d.V=(1/(1-d.bta))*ones(d.DJ,d.T); %guess
@@ -28,7 +28,10 @@ d.V=repmat(rs.V,1,d.T); %copy steady state
 d.L=repmat(rs.L,1,d.T); %copy steady state
 
 disp("Solving transition")
+
+tic
 rt=Solve_ACM(d);
+toc
 
 disp("Figures")
 Lt=[repmat(rs.L,1,5) rt.L];
@@ -85,7 +88,9 @@ while err_big && iter<Niter
 
     iter = iter+1;
     
-    %SOLUTION ALGORITHM BEGINS    
+    %SOLUTION ALGORITHM BEGINS 
+    %if tau=0 then i_tau=[1 2 3 .. T-1 T]
+    %if tau=1 then i_tau=[2 3 .. T-1 T T] thus last period repeats   
     i_tau = [(tau+1):(tau-1)+T T]; %index to use later
 
     %Step 1: cpi and wages

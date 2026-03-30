@@ -53,6 +53,8 @@ function Solve_ACM(d)
         iter += 1
         
         # SOLUTION ALGORITHM BEGINS
+        #if tau=0 then i_tau=[1, 2, 3, .. T-1, T]
+        #if tau=1 then i_tau=[2, 3, .. T-1, T, T] thus last period repeats
         i_tau = vcat(collect((tau+1):(tau-1+T)),T) #index for convenience
         
         #Step 1: cpi and wages 
@@ -67,7 +69,7 @@ function Solve_ACM(d)
         omega = -nu.*log.(reshape(mij[diag_mask_T],DJ,T)) #Eq. 7
         
         #Step 4: implied values
-        V_star[:,1:T] = wage.+bta.*V[:,i_tau].+omega #Eq.
+        V_star[:,1:T] = wage.+bta.*V[:,i_tau].+omega #Eq.3
         
         #Step 5: implied labor allocations
         L_star[:,tau+1:T] = reshape(sum(reshape(L[:,1:T-tau], DJ, 1, T-tau).*mij[:,:,1:T-tau],dims=1),DJ,T-tau) #labor flow

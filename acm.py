@@ -43,6 +43,8 @@ def Solve_ACM(d):
         iter_count += 1
         
         # SOLUTION ALGORITHM BEGINS
+        #if tau=0 then i_tau=[0, 1, 2, 3, .., T-2, T-1]
+        #if tau=1 then i_tau=[2, 3, .., T-2, T-1, T-1] thus last period repeats
         i_tau = list(range(tau,tau-1+T))+[T-1] #index for convenience
 
         #Step 1: cpi and wages 
