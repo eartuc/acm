@@ -12,6 +12,7 @@ d["err_tol"] = 1.0e-8
 d["speed"] = 0.4
 
 #------------------------
+
 def Solve_ACM(d):
 
     Niter = d["Niter"]
@@ -86,12 +87,13 @@ def Solve_ACM(d):
         "omega": omega
     }
 
+#------------------------------------
 
 # STARTING STEADY STATE
 d["T"] = 1 #horizon is irrelevant for ss
 d["tau"] = 0 #tau=0 means steady state
 
-# Make sure: (1) Shapes are correct
+# Make sure: Shapes are correct
 d["price"] = np.tile(d["price_ss"][:,np.newaxis],(1,d["T"]))
 d["L"] = np.ones((DJ, d["T"])) / DJ #guess, total labor=1
 d["V"] = (1/(1-d["bta"]))*np.ones((DJ,d["T"])) #guess
@@ -102,7 +104,6 @@ rs = Solve_ACM(d)
 # TRANSITION
 d["T"] = 30 #horizon=30
 d["tau"] = 1 #tau=1 means transition
-#d["price"]=d["price_ft"][:,np.newaxis]
 
 # Make sure: (1) L[:,0] is the initial labor alloc (2) Shapes are correct
 d["price"] = np.tile(d["price_ft"][:,np.newaxis],(1,d["T"]))

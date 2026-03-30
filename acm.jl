@@ -101,13 +101,14 @@ function Solve_ACM(d)
     )
 end
 
+#--------------------------------------
 
 # STARTING STEADY STATE
 d["T"] = 1 #horizon is irrelevant for ss
 d["tau"] = 0 #tau=1 means steady state
 d["price"] = d["price_ss"] #initial prices
 
-# Make sure: (1) Shapes are correct
+# Make sure: Shapes are correct
 d["L"] = ones(DJ, d["T"]) ./ DJ #guess, total labor=1
 d["V"] = (1/(1-d["bta"])).*ones(DJ,d["T"]) #guess
 
