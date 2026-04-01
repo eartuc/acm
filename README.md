@@ -1,6 +1,6 @@
 # Simple solution code for Artuc, Chaudhuri and McLaren (2010)
 
-I realized that the replication package provided with the paper is unclear and inefficient. I rewrote the simulation code in Python, Julia and Matlab using a much simpler and shorter solution algorithm that I have been using for many years (since 2010, I think). Each script is self-contained, with references to equations in the paper. In this version, I am considering the simplest case in our paper, where all sectors are traded and prices are exogenous.
+I realized that the replication package provided with the paper was unclear and inefficient. When we wrote the code around 2006, Matlab did not support broadcasting, Julia and Python 3 did not even exist. I rewrote the simulation code in Python, Julia and Matlab using a much simpler and shorter solution algorithm that I have been using for many years (since 2010, I think). Each script is self-contained, with references to equations in the paper. In this version, I am considering the simplest case in our paper, where all sectors are traded and prices are exogenous.
 
 See Artuc and Ortega (2026) for a more comprehensive dicussion on solving static trade models, but with many more moving parts.  
 
@@ -8,7 +8,7 @@ See Artuc and Ortega (2026) for a more comprehensive dicussion on solving static
 
 ### Step 0: 
 
-First, guess $V^i_t$ and $L^i_t$
+First, guess $V^i_t$ and $L^i_t$. Note that $L^i_0$ is the initial labor allocation before the shock. 
 
 ### Step 1: 
 
